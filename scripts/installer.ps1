@@ -154,24 +154,23 @@ function Rename-FileWithBackup {
     return $backupPath
 }
 
-# Patch the pre-existing files (Which aren't MUIs anymore)
-	foreach ($line in $FILES) {
-		if ($line -match '^(?:"([^"]+)"|(\S+))\s+(.*)$') {
-			if ($matches[1] -ne $null) {
-				$directoryPart = $matches[1]
-			} else {
-				$directoryPart = $matches[2]
-			}
-			$file = $matches[3]
-		} else {
-			continue
-		}
+foreach ($line in $FILES) {
+    if ($line -match '^(?:"([^"]+)"|(\S+))\s+(.*)$') {
+        if ($matches[1] -ne $null) {
+            $directoryPart = $matches[1]
+        } else {
+            $directoryPart = $matches[2]
+        }
+        $file = $matches[3]
+    } else {
+        continue
+    }
 
-		$directoryPart = $directoryPart.ToLower() -replace '\$LOCALE', $LOCALE.ToLower()
-		$file = $file.ToLower() -replace '\$LOCALE', $LOCALE.ToLower()
-		$file = Clean-FilePath -filePath $file
-		$skipLine = $false
-   
+    $directoryPart = $directoryPart.ToLower() -replace '\$LOCALE', $LOCALE.ToLower()
+    $file = $file.ToLower() -replace '\$LOCALE', $LOCALE.ToLower()
+    $file = Clean-FilePath -filePath $file
+    $skipLine = $false
+
 	switch -Regex ($line) {
         "LegacyUAC" {
             $registryKey = "AllowLegacyUACPatch"
@@ -208,13 +207,13 @@ function Rename-FileWithBackup {
         continue
     }
 
-	# Skip files that are not .res (We are patching files, not moving)
-		if ($file -notlike "*.res") {
-		continue
-		}
+    # Skip files that are not .res (We are patching files, not moving)
+    if ($file -notlike "*.res") {
+        continue
+    }
 
     $fileRes = $file -replace '\.mui$', '.res'
-    $filePath = Join-Path -Path $filesFolderPath -ChildPath $directoryPart
+    $filePath = Join-Path -Path $filesFolderPath -ChildPath "$LOCALE\$directoryPart"
 
     # Check what SKU the user has chosen in the main 21H2to7 installer and then patch it accordingly. (Win10 doesn't get patched (Unless someone adds the basebrd.dll.mui.res in the main directory))
     if ($file -eq "basebrd.dll.mui.res") {
@@ -225,7 +224,7 @@ function Rename-FileWithBackup {
             # Process the SKU Folder per Branding values.
             if ($file -eq "basebrd.dll.mui.res") {
                 $resDirectoryPart = $directoryPart
-                switch ($brandingKey.Branding) {
+				switch ($brandingKey.Branding) {
                     "win7pro" { 
                         $resDirectoryPart = Join-Path -Path $resDirectoryPart -ChildPath "Professional"
                     }
@@ -244,18 +243,18 @@ function Rename-FileWithBackup {
                     default { 
                     }
                 }
-                $filePathWithRes = Join-Path -Path $filesFolderPath -ChildPath $resDirectoryPart
+                $filePathWithRes = Join-Path -Path $filesFolderPath -ChildPath "$LOCALE\$resDirectoryPart"
                 $filePathWithRes = Join-Path -Path $filePathWithRes -ChildPath "basebrd.dll.mui.res"
             }
         }
     }
 
-    # Basebrd is a weird case. It's the only file that dynamically changes depanding on the registry so it requires more work to get it working like the other files.
+    # Basebrd is a weird case. It's the only file that dynamically changes depending on the registry so it requires more work to get it working like the other files.
     if ($file -eq "basebrd.dll.mui.res") {
-        $filePathWithRes = Join-Path -Path $filesFolderPath -ChildPath $resDirectoryPart
+        $filePathWithRes = Join-Path -Path $filesFolderPath -ChildPath "$LOCALE\$resDirectoryPart"
         $filePathWithRes = Join-Path -Path $filePathWithRes -ChildPath $fileRes
     } else {
-        $filePathWithRes = Join-Path -Path $filesFolderPath -ChildPath $directoryPart
+        $filePathWithRes = Join-Path -Path $filesFolderPath -ChildPath "$LOCALE\$directoryPart"
         $filePathWithRes = Join-Path -Path $filePathWithRes -ChildPath $fileRes
     }
     if (-not $filePathWithRes.StartsWith($env:SystemDrive)) {
@@ -285,7 +284,7 @@ function Rename-FileWithBackup {
 
         $process = Start-Process -FilePath $resourceHackerPath -ArgumentList $arguments -NoNewWindow -Wait -PassThru
     } else {
-        Write-Host "Warning: The file '$fileRes' does not exist in the locale folder '$filePathWithRes'."
+	        Write-Host "Warning: The file '$fileRes' does not exist in the locale folder '$filePathWithRes'."
     }
 }
 
@@ -293,33 +292,33 @@ function Rename-FileWithBackup {
 Write-Host "Copying files..."
 
 # Copy the new files
-	foreach ($line in $FILES) {
-		if ($line -match '^(?:"([^"]+)"|(\S+))\s+(.*)$') {
-			if ($matches[1] -ne $null) {
-				$directoryPart = $matches[1]
-			} else {
-				$directoryPart = $matches[2]
-			}
-			$file = $matches[3]
-		}
+foreach ($line in $FILES) {
+    if ($line -match '^(?:"([^"]+)"|(\S+))\s+(.*)$') {
+        if ($matches[1] -ne $null) {
+            $directoryPart = $matches[1]
+        } else {
+            $directoryPart = $matches[2]
+        }
+        $file = $matches[3]
+    }
 
-		$directoryPart = $directoryPart.ToLower() -replace '\$LOCALE', $LOCALE.ToLower()
-		$file = $file.ToLower() -replace '\$LOCALE', $LOCALE.ToLower()
+    $directoryPart = $directoryPart.ToLower() -replace '\$LOCALE', $LOCALE.ToLower()
+    $file = $file.ToLower() -replace '\$LOCALE', $LOCALE.ToLower()
 
     # Clean the file path
-		$file = Clean-FilePath -filePath $file
+    $file = Clean-FilePath -filePath $file
 
-		$filePath = Join-Path -Path $filesFolderPath -ChildPath $directoryPart
-		$filePath = Join-Path -Path $filePath -ChildPath $file
+    $filePath = Join-Path -Path $filesFolderPath -ChildPath "$LOCALE\$directoryPart"
+    $filePath = Join-Path -Path $filePath -ChildPath $file
 
     # Ensure the file is there (It happens to the best of us)
-		if (-not (Test-Path -Path $filePath -PathType Leaf)) {
-			Write-Host "Error: The source file '$filePath' does not exist."
-			continue
-		}
-		
+    if (-not (Test-Path -Path $filePath -PathType Leaf)) {
+        Write-Host "Error: The source file '$filePath' does not exist."
+        continue
+    }
+    
     $skipLine = $false
-	switch -Regex ($line) {
+    switch -Regex ($line) {
         "LegacyUAC" {
             $registryKey = "AllowLegacyUACPatch"
         }
@@ -373,9 +372,9 @@ Write-Host "Copying files..."
 
     Write-Host "$destinationPath..."
     Copy-Item -Path $filePath -Destination $destinationPath -Force
-    Write-Host "Copying files is done."
 }
-
+Write-Host "Copying files is done."
+	
 # Cleanup the MUICache so Windows doesn't reuse pre-existing strings and instead it uses the new ones.
 
 	$MUICache = "HKCU\SOFTWARE\Classes\Local Settings\MuiCache"
