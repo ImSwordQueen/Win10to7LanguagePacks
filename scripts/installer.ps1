@@ -7,12 +7,12 @@ $Host.UI.RawUI.WindowTitle = "Windows 21H2to7 Language Pack Installer"
 # Variables
 $PACKVERSION = "3.5.3"
 $LOCALE = (Get-Culture).Name
-$FILES = Get-Content -Path "$PSScriptRoot\files.txt"
 $rootFolderPath = Split-Path -Parent $PSScriptRoot
 $filesFolderPath = Join-Path -Path $rootFolderPath -ChildPath "files"
+$FILES = Get-Content -Path "$filesFolderPath\$LOCALE\files.txt"
 $registryPath = "HKLM:\SOFTWARE\WOW6432Node\Win10to7"
 $registryVersionValueName = "Version"
-	
+
 # Check if the /Locale argument is specified
 foreach ($arg in $args) {
     if ($arg -match "^/Locale=(.+)$") {
@@ -29,7 +29,6 @@ if (-not (Test-Path -Path $localeFolderPath -PathType Container)) {
     Pause
     Exit
 }
-
 
 # Texts
 Clear-Host
