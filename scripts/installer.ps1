@@ -21,7 +21,7 @@ foreach ($arg in $args) {
 }
 
 # Check if the locale folder exists in the windows directory
-$windowsFolderPath = Join-Path -Path $rootFolderPath -ChildPath "files\windows"
+$windowsFolderPath = Join-Path -Path $rootFolderPath -ChildPath "files"
 $localeFolderPath = Join-Path -Path $windowsFolderPath -ChildPath $LOCALE
 
 if (-not (Test-Path -Path $localeFolderPath -PathType Container)) {
