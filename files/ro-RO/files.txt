@@ -1,6 +1,7 @@
 Windows\Branding\Basebrd\$LOCALE Basebrd.dll.mui.res ALL
 Windows\$LOCALE explorer.exe.mui.res ALL
 Windows\System32\$LOCALE shell32.dll.mui.res ALL
+Windows\System32\$LOCALE propsys.dll.mui.res ALL
 Windows\System32\$LOCALE themecpl.dll.mui.res ALL
 Windows\System32\$LOCALE windows.storage.dll.mui.res ALL
 Windows\System32 themecpl7.dll.res ALL
