@@ -5,7 +5,7 @@ Set-Location -Path $PSScriptRoot
 $Host.UI.RawUI.WindowTitle = "Windows 21H2to7 Language Pack Installer"
 
 # Variables
-$PACKVERSION = "3.5.3"
+$PACKVERSION = "3.5.4"
 $LOCALE = (Get-Culture).Name
 $rootFolderPath = Split-Path -Parent $PSScriptRoot
 $filesFolderPath = Join-Path -Path $rootFolderPath -ChildPath "files"
