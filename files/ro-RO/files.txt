@@ -4,10 +4,12 @@ Windows\System32\$LOCALE shell32.dll.mui.res ALL
 Windows\System32\$LOCALE propsys.dll.mui.res ALL
 Windows\System32\$LOCALE themecpl.dll.mui.res ALL
 Windows\System32\$LOCALE windows.storage.dll.mui.res ALL
+Windows\System32\$LOCALE explorerframe.dll.mui.res ALL
 Windows\System32 themecpl7.dll.res ALL
 Windows\System32 themeui7.dll.res ALL
 Windows\System32\$LOCALE usercpl.dll.mui.res UserCPL
 "Program Files\Common Files\microsoft shared\ink\$LOCALE" tipresx.dll.mui.res Accessibility
+Windows\System32\$LOCALE netcenter.dll.mui.res VANPatch
 Windows\System32\$LOCALE shell7.dll.mui ALL
 Windows\System32\$LOCALE ActionCenter.dll.mui ALL
 Windows\System32\$LOCALE oobefldr.dll.mui ALL
