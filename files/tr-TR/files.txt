@@ -3,12 +3,20 @@ Windows\$LOCALE explorer.exe.mui.res ALL
 Windows\System32\$LOCALE shell32.dll.mui.res ALL
 Windows\System32\$LOCALE themecpl.dll.mui.res ALL
 Windows\System32\$LOCALE windows.storage.dll.mui.res ALL
+Windows\System32\$LOCALE netcenter.dll.mui.res ALL
+Windows\System32\$LOCALE diagcpl.dll.mui.res ALL
 Windows\System32 themecpl7.dll.res ALL
 Windows\System32 themeui7.dll.res ALL
+Windows\System32 diagcpl.dll.res ALL
+Windows\System32 ActionCenterCPL.dll.res ALL
+Windows\System32 sdcpl.dll.res ALL
 Windows\System32\$LOCALE usercpl.dll.mui.res UserCPL
 "Program Files\Common Files\microsoft shared\ink\$LOCALE" tipresx.dll.mui.res Accessibility
 Windows\System32\$LOCALE shell7.dll.mui ALL
 Windows\System32\$LOCALE ActionCenter.dll.mui ALL
+Windows\System32\$LOCALE ActionCenterCPL.dll.mui.res ALL
+Windows\System32\$LOCALE sdcpl.dll.mui.res ALL
+Windows\System32\$LOCALE recovery.dll.mui.res ALL
 Windows\System32\$LOCALE oobefldr.dll.mui ALL
 Windows\System32\$LOCALE SoundRecorder.exe.mui ALL
 Windows\System32\$LOCALE wucltux.dll.mui ALL
