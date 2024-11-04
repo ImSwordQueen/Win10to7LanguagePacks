@@ -13,4 +13,4 @@ If you want to support this project you can check how to make your own locale in
 
 ## Bug Reporting
 
-All bugs reports should be reported [here](https://github.com/ImSwordQueen/Win10to7Issues/issues) under [Language Pack Bug report](https://github.com/ImSwordQueen/Win10to7Issues/issues/new?assignees=&labels=Language+Pack+Issue&projects=&template=language_pack_bug_report.md&title=%5BADD+YOUR+LOCALE+HERE%5D)
+All bugs reports should be reported [here](https://github.com/ImSwordQueen/Win10to7Issues/issues) under [Language Pack Bug report](https://github.com/ImSwordQueen/Win10to7Issues/issues/new?assignees=&labels=Language+Pack+Issue&projects=&template=language_pack_bug_report.yml&title=%5BADD+YOUR+LOCALE+HERE%5D)
