@@ -6,6 +6,7 @@ The current languages that the Windows 21H2to7 Language Pack Installer support a
 - Italian (It-IT)
 - Korean (ko-KR)
 - Romanian (ro-RO)
+- Russian (ru-RU)
 - Polish (pl-PL)
 - Turkish (tr-TR)
 ## Contributions
