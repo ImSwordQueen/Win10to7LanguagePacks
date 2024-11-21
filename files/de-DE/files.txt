@@ -1,4 +1,4 @@
-Windows\Branding\Basebrd\$LOCALE Basebrd.dll.mui.res ALL
+Windows\Branding\Basebrd\$LOCALE basebrd.dll.mui.res ALL
 Windows\$LOCALE explorer.exe.mui.res ALL
 Windows\System32\$LOCALE winlogon.exe.mui.res ALL
 Windows\System32\$LOCALE shell32.dll.mui.res ALL
