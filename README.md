@@ -4,6 +4,7 @@ Windows 21H2to7 Language Pack Installer is a small pack of files that fixes some
 
 The current languages that the Windows 21H2to7 Language Pack Installer support are:
 - Italian (It-IT)
+- German(Germany) (De-DE)
 - Korean (ko-KR)
 - Romanian (ro-RO)
 - Russian (ru-RU)
