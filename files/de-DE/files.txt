@@ -15,6 +15,7 @@ Windows\System32\$LOCALE wucltux.dll.mui ALL
 Windows\System32\$LOCALE xpsrchvw.exe.mui ALL
 Windows\System32\$LOCALE mctres.dll.mui ALL
 Windows\System32\$LOCALE displayswitch.exe.mui ALL
+Windows\System32\$LOCALE recovery.dll.mui.res ALL
 Windows\System32\oobe\$LOCALE WinLGDep.dll.mui ALL
 Windows\System32\oobe\$LOCALE windeploy.exe.mui ALL
 Windows\System32\$LOCALE PerfCenterCPL.dll.mui ALL
