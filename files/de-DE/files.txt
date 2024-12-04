@@ -22,6 +22,7 @@ Windows\System32\migwiz\$LOCALE migcore.dll.mui ALL
 Windows\System32\migwiz\$LOCALE migsetup.exe.mui ALL
 Windows\System32\migwiz\$LOCALE migwiz.exe.mui ALL
 Windows\System32\migwiz\$LOCALE wet.dll.mui ALL
+Program Files\Windows Media Center\ehome\$LOCALE ehshell.dll.mui ALL
 Windows\System32\$LOCALE devmgmt.msc MMC
 Windows\System32\$LOCALE diskmgmt.msc MMC
 Windows\System32\$LOCALE usercpl.dll.mui.res UserCPL
