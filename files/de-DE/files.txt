@@ -3,6 +3,8 @@ Windows\$LOCALE explorer.exe.mui.res ALL
 Windows\System32\$LOCALE winlogon.exe.mui.res ALL
 Windows\System32\$LOCALE shell32.dll.mui.res ALL
 Windows\System32\$LOCALE themecpl.dll.mui.res ALL
+Windows\System32\$LOCALE ActionCenterCPL.dll.mui.res ALL
+Windows\System32\$LOCALE sdcpl.dll.mui.res ALL
 Windows\System32\$LOCALE themeui.dll.mui.res ALL
 Windows\System32\$LOCALE windows.storage.dll.mui.res ALL
 Windows\System32 themecpl7.dll.res ALL
@@ -15,6 +17,7 @@ Windows\System32\$LOCALE wucltux.dll.mui ALL
 Windows\System32\$LOCALE xpsrchvw.exe.mui ALL
 Windows\System32\$LOCALE mctres.dll.mui ALL
 Windows\System32\$LOCALE displayswitch.exe.mui ALL
+Windows\System32\$LOCALE recovery.dll.mui.res ALL
 Windows\System32\oobe\$LOCALE WinLGDep.dll.mui ALL
 Windows\System32\oobe\$LOCALE windeploy.exe.mui ALL
 Windows\System32\$LOCALE PerfCenterCPL.dll.mui ALL
@@ -22,6 +25,7 @@ Windows\System32\migwiz\$LOCALE migcore.dll.mui ALL
 Windows\System32\migwiz\$LOCALE migsetup.exe.mui ALL
 Windows\System32\migwiz\$LOCALE migwiz.exe.mui ALL
 Windows\System32\migwiz\$LOCALE wet.dll.mui ALL
+Windows\ehome\$LOCALE ehshell.dll.mui ALL
 Windows\System32\$LOCALE devmgmt.msc MMC
 Windows\System32\$LOCALE diskmgmt.msc MMC
 Windows\System32\$LOCALE usercpl.dll.mui.res UserCPL
