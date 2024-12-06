@@ -4,6 +4,7 @@ Windows\System32\$LOCALE winlogon.exe.mui.res ALL
 Windows\System32\$LOCALE shell32.dll.mui.res ALL
 Windows\System32\$LOCALE themecpl.dll.mui.res ALL
 Windows\System32\$LOCALE ActionCenterCPL.dll.mui.res ALL
+Windows\System32\$LOCALE sdcpl.dll.mui.res ALL
 Windows\System32\$LOCALE themeui.dll.mui.res ALL
 Windows\System32\$LOCALE windows.storage.dll.mui.res ALL
 Windows\System32 themecpl7.dll.res ALL
