@@ -2,6 +2,8 @@
 
 Windows 21H2to7 Language Pack Installer is a small pack of files that fixes some issues when you install Windows 21H2to7 Transformation Pack on non American English (En-US) Windows.
 
+Use the different branches for the version of 21H2to7 that is in use.
+
 The current languages that the Windows 21H2to7 Language Pack Installer support are:
 - Italian (It-IT)
 - German (De-DE)
