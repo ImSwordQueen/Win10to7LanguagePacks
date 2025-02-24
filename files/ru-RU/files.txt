@@ -6,6 +6,7 @@ Windows\System32\$LOCALE windows.storage.dll.mui.res ALL
 Windows\System32 themecpl7.dll.res ALL
 Windows\System32 themeui7.dll.res ALL
 Windows\System32\$LOCALE usercpl.dll.mui.res UserCPL
+Windows TbConf.exe LegacyCPL
 "Program Files\Common Files\microsoft shared\ink\$LOCALE" tipresx.dll.mui.res Accessibility
 Windows\System32\$LOCALE Netcenter.dll.mui.res VANPatch
 Windows\System32\$LOCALE shell7.dll.mui ALL
@@ -16,6 +17,7 @@ Windows\System32\$LOCALE wucltux.dll.mui ALL
 Windows\System32\$LOCALE xpsrchvw.exe.mui ALL
 Windows\System32\$LOCALE mctres.dll.mui ALL
 Windows\System32\$LOCALE displayswitch.exe.mui ALL
+Windows\System32\$LOCALE PerfCenterCPL.dll.mui ALL
 Windows\System32\oobe\$LOCALE WinLGDep.dll.mui ALL
 Windows\System32\oobe\$LOCALE windeploy.exe.mui ALL
 "Program Files\Common Files\microsoft shared\ink\$LOCALE" tabskb.dll.mui Accessibility
