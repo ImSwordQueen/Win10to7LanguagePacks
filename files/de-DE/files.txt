@@ -34,6 +34,7 @@ Windows\System32\$LOCALE devmgmt.msc MMC
 Windows\System32\$LOCALE diskmgmt.msc MMC
 Windows\System32\$LOCALE usercpl.dll.mui.res UserCPL
 Windows\System32\$LOCALE display.dll.mui LegacyCPL
+Windows tbconf.exe.res LegacyCPL
 Windows\System32\$LOCALE authui.dll.mui LegacyUAC
 Windows\System32\$LOCALE Netcenter.dll.mui.res VANPatch
 Windows\System32\$LOCALE VAN.dll.mui VANPatch
