@@ -19,11 +19,7 @@ Windows\System32\$LOCALE xpsrchvw.exe.mui ALL
 Windows\System32\$LOCALE mctres.dll.mui ALL
 Windows\System32\$LOCALE displayswitch.exe.mui ALL
 Windows\System32\$LOCALE recovery.dll.mui.res ALL
-Windows\System32\en-US slui.dll.mui ALL
-Windows\System32\en-US sppcommdlg.dll.mui ALL
-Windows\System32\$LOCALE systemcpl.dll.mui ALL
-Windows\Resources\Themes\Aero7\Shell\NormalColor shellstyle.dll.res ALL
-Windows\Resources\Themes\AeroDark\Shell\NormalColor shellstyle.dll.res ALL
+Windows\System32\$LOCALE sppcommdlg.dll.mui ALL
 Windows\System32\oobe\$LOCALE WinLGDep.dll.mui ALL
 Windows\System32\oobe\$LOCALE windeploy.exe.mui ALL
 Windows\System32\$LOCALE PerfCenterCPL.dll.mui ALL
