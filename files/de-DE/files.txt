@@ -27,7 +27,6 @@ Windows\System32\migwiz\$LOCALE migcore.dll.mui ALL
 Windows\System32\migwiz\$LOCALE migsetup.exe.mui ALL
 Windows\System32\migwiz\$LOCALE migwiz.exe.mui ALL
 Windows\System32\migwiz\$LOCALE wet.dll.mui ALL
-"Program Files\Windows Media Center\ehome\$LOCALE" ehres.dll.mui.res ALL
 "Program Files\DVD Maker\$LOCALE" DVDMaker.exe.mui ALL
 "Program Files\DVD Maker\$LOCALE" OmdProject.dll.mui ALL
 "Program Files\DVD Maker\$LOCALE" WMM2CLIP.dll.mui ALL
