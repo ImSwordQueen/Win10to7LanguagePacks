@@ -1,12 +1,8 @@
 Windows\Branding\Basebrd\$LOCALE Basebrd.dll.mui.res ALL
-Windows\$LOCALE explorer.exe.mui.res ALL
 Windows\System32\$LOCALE shell32.dll.mui.res ALL
 Windows\System32\$LOCALE themecpl.dll.mui.res ALL
 Windows\System32\$LOCALE windows.storage.dll.mui.res ALL
-Windows\System32 themecpl7.dll.res ALL
-Windows\System32 themeui7.dll.res ALL
 Windows\System32\$LOCALE usercpl.dll.mui.res UserCPL
-"Program Files\Common Files\microsoft shared\ink\$LOCALE" tipresx.dll.mui.res Accessibility
 Windows\System32\$LOCALE Netcenter.dll.mui.res VANPatch
 Windows\System32\$LOCALE shell7.dll.mui ALL
 Windows\System32\$LOCALE ActionCenter.dll.mui ALL
@@ -16,9 +12,6 @@ Windows\System32\$LOCALE wucltux.dll.mui ALL
 Windows\System32\$LOCALE xpsrchvw.exe.mui ALL
 Windows\System32\$LOCALE mctres.dll.mui ALL
 Windows\System32\$LOCALE displayswitch.exe.mui ALL
-Windows\System32\oobe\$LOCALE WinLGDep.dll.mui ALL
-Windows\System32\oobe\$LOCALE windeploy.exe.mui ALL
-"Program Files\Common Files\microsoft shared\ink\$LOCALE" tabskb.dll.mui Accessibility
 Windows\System32\$LOCALE devmgmt.msc MMC
 Windows\System32\$LOCALE diskmgmt.msc MMC
 Windows\System32\$LOCALE display.dll.mui LegacyCPL
@@ -37,3 +30,11 @@ Windows\System32\$LOCALE Qutil.dll.mui VANPatch
 Windows\System32\$LOCALE osk.exe.mui Accessibility
 Windows\System32\$LOCALE Magnification.dll.mui Accessibility
 Windows\System32\$LOCALE Magnify.exe.mui Accessibility
+Windows\System32\oobe\$LOCALE WinLGDep.dll.mui ALL
+Windows\System32\oobe\$LOCALE windeploy.exe.mui ALL
+Windows\System32 themecpl7.dll.res ALL
+Windows\System32 themeui7.dll.res ALL
+Windows\$LOCALE explorer.exe.mui.res ALL
+Windows tbconf.exe.res LegacyCPL
+"Program Files\Common Files\microsoft shared\ink\$LOCALE" tabskb.dll.mui Accessibility
+"Program Files\Common Files\microsoft shared\ink\$LOCALE" tipresx.dll.mui.res Accessibility
