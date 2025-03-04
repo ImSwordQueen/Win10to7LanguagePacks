@@ -10,6 +10,7 @@ The current languages that the Windows 21H2to7 Language Pack Installer support a
 - Russian (ru-RU)
 - Polish (pl-PL)
 - Turkish (tr-TR)
+- Chinese [Taiwan] (zh-TW)
 ## Contributions
 
 If you want to support this project you can check how to make your own locale in the wiki and what files you need from which versions of windows.
