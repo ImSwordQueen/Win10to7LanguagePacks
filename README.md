@@ -6,7 +6,6 @@ Use the different branches for the version of 21H2to7 that is in use.
 
 The current versions of the pack are:
 - [3.6.x](https://github.com/ImSwordQueen/Win10to7LanguagePacks/tree/3.6.x)
-- [3.5.4 LTS](https://github.com/ImSwordQueen/Win10to7LanguagePacks/tree/3.5.4-LTS)
 
 The current languages that the Windows 21H2to7 Language Pack Installer support are:
 - Italian (It-IT)
