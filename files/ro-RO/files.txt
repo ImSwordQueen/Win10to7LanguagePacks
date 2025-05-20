@@ -15,7 +15,6 @@ Windows\System32\$LOCALE ActionCenter.dll.mui ALL
 Windows\System32\$LOCALE oobefldr.dll.mui ALL
 Windows\System32\$LOCALE SoundRecorder.exe.mui ALL
 Windows\System32\$LOCALE wucltux.dll.mui ALL
-Windows\System32\$LOCALE xpsrchvw.exe.mui ALL
 Windows\System32\$LOCALE mctres.dll.mui ALL
 Windows\System32\$LOCALE displayswitch.exe.mui ALL
 Windows\System32\oobe\$LOCALE WinLGDep.dll.mui ALL
