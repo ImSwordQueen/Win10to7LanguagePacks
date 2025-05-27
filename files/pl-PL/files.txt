@@ -14,6 +14,7 @@ Windows\System32\$LOCALE ActionCenter.dll.mui ALL
 Windows\System32\$LOCALE oobefldr.dll.mui ALL
 Windows\System32\$LOCALE SoundRecorder.exe.mui ALL
 Windows\System32\$LOCALE wucltux.dll.mui ALL
+
 Windows\System32\$LOCALE mctres.dll.mui ALL
 Windows\System32\$LOCALE displayswitch.exe.mui ALL
 Windows\System32\oobe\$LOCALE WinLGDep.dll.mui ALL
@@ -23,7 +24,7 @@ Windows\System32\$LOCALE devmgmt.msc MMC
 Windows\System32\$LOCALE diskmgmt.msc MMC
 Windows\System32\$LOCALE display.dll.mui LegacyCPL
 Windows\System32\$LOCALE PerfCenterCPL.dll.mui ALL
-Windows\System32\$LOCALE authui.dll.mui LegacyUAC
+Windows\System32\$LOCALE authuac.dll.mui LegacyUAC
 Windows\System32\$LOCALE VAN.dll.mui VANPatch
 Windows\System32\$LOCALE wcnwiz.dll.mui VANPatch
 Windows\System32\$LOCALE WLanConn.dll.mui VANPatch
