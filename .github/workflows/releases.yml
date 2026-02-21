@@ -61,22 +61,25 @@ jobs:
 
       - name: Get changelog
         id: changelog
-        shell: pwsh
+        shell: bash
         run: |
           # Get commits since last tag (if any)
-          $lastTag = git describe --tags --abbrev=0 2>$null
-          if ($lastTag) {
-            $newCommits = git log $lastTag..HEAD --format="| %h | %s |" --pretty=tformat:"| %h | %s |"
-          } else {
+          last_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -n "$last_tag" ]; then
+            new_commits=$(git log "$last_tag"..HEAD --format="| %h | %s |")
+          else
             # If no tag exists, get all commits
-            $newCommits = git log --format="| %h | %s |" --pretty=tformat:"| %h | %s |"
-          }
+            new_commits=$(git log --format="| %h | %s |")
+          fi
 
-          # Format for output
-          $newCommitsEscaped = $newCommits -replace "`r`n", "%0A" -replace "`n", "%0A"
-          "new_commits=$newCommitsEscaped" >> $env:GITHUB_OUTPUT
+          # Output using heredoc format
+          {
+            echo 'new_commits<<EOF'
+            echo "$new_commits"
+            echo 'EOF'
+          } >> $GITHUB_OUTPUT
 
-          Write-Host "Found commits since last tag"
+          echo "Found commits since last tag"
 
       - name: Create language pack ZIPs
         shell: pwsh
