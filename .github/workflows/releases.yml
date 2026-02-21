@@ -50,12 +50,9 @@ jobs:
         run: |
           $languages = Get-ChildItem -Path "files" -Directory | Where-Object { $_.Name -ne "Template-TEMPLATE" } | ForEach-Object { $_.Name }
           $languageList = $languages -join ", "
-          $languageMarkdown = $languages | ForEach-Object { "- $_" } | Out-String
-          $languageListEscaped = $languageList -replace "`r`n", "" -replace "`n", ""
-          $languageMarkdownEscaped = $languageMarkdown -replace "`r`n", "%0A" -replace "`n", "%0A" -replace "\r", ""
-          "list=$languageListEscaped" >> $env:GITHUB_OUTPUT
-          "markdown=$languageMarkdownEscaped" >> $env:GITHUB_OUTPUT
           Write-Host "Found languages: $languageList"
+          "list=$languageList" >> $env:GITHUB_OUTPUT
+          $languages | ForEach-Object { Add-Content -Path $env:GITHUB_OUTPUT -Value "markdown=- $_" }
 
       - name: Get changelog
         id: changelog
@@ -98,6 +95,8 @@ jobs:
             if (Test-Path "scripts") {
               Copy-Item -Path "scripts" -Destination "$tempDir\scripts" -Recurse
             }
+
+            Copy-Item -Path "install.cmd" -Destination "$tempDir\"
 
             # Copy the language folder from files
             Copy-Item -Path "files\$langName" -Destination "$tempDir\files\$langName" -Recurse
