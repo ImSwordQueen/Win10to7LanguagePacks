@@ -46,15 +46,18 @@ jobs:
 
       - name: Get language list
         id: languages
-        shell: pwsh
+        shell: bash
         run: |
-          $languages = Get-ChildItem -Path "files" -Directory | Where-Object { $_.Name -ne "Template-TEMPLATE" } | ForEach-Object { $_.Name }
-          $languageList = $languages -join ", "
-          $languageMarkdown = $languages | ForEach-Object { "- $_" }
-          $languageMarkdownString = $languageMarkdown -join "`n"
-          Write-Host "Found languages: $languageList"
-          "list=$languageList" >> $env:GITHUB_OUTPUT
-          "markdown=$languageMarkdownString" >> $env:GITHUB_OUTPUT
+          languages=$(find files -maxdepth 1 -type d ! -name "files" ! -name "Template-TEMPLATE" -printf "%f\n" | sort)
+          language_list=$(echo "$languages" | tr '\n' ',' | sed 's/,$//')
+          language_markdown=$(echo "$languages" | sed 's/^/- /')
+          echo "list=$language_list" >> $GITHUB_OUTPUT
+          {
+            echo 'markdown<<EOF'
+            echo "$language_markdown"
+            echo 'EOF'
+          } >> $GITHUB_OUTPUT
+          echo "Found languages: $language_list"
 
       - name: Get changelog
         id: changelog
