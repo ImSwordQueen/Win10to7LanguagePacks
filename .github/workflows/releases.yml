@@ -66,20 +66,22 @@ jobs:
           # Get commits since last tag (if any)
           last_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
           if [ -n "$last_tag" ]; then
-            new_commits=$(git log "$last_tag"..HEAD --format="| %h | %s |")
+            git log "$last_tag"..HEAD --format="| %h | %s |" > /tmp/commits.txt
           else
             # If no tag exists, get all commits
-            new_commits=$(git log --format="| %h | %s |")
+            git log --format="| %h | %s |" > /tmp/commits.txt
           fi
+
+          # Count commits for logging
+          commit_count=$(wc -l < /tmp/commits.txt)
+          echo "Found $commit_count commits since last tag"
 
           # Output using heredoc format
           {
             echo 'new_commits<<EOF'
-            echo "$new_commits"
+            cat /tmp/commits.txt
             echo 'EOF'
           } >> $GITHUB_OUTPUT
-
-          echo "Found commits since last tag"
 
       - name: Create language pack ZIPs
         shell: pwsh
@@ -127,6 +129,15 @@ jobs:
           $title = "Release ${{ steps.info.outputs.version }} - ${{ inputs.branch }} - ${{ steps.info.outputs.timestamp }} - Commit ${{ steps.info.outputs.commit }}"
           "tag=$tag" >> $env:GITHUB_OUTPUT
           "title=$title" >> $env:GITHUB_OUTPUT
+
+      - name: Create tag on selected branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "${{ steps.release-info.outputs.tag }}" -m "Release ${{ steps.release-info.outputs.title }}"
+          git push origin "${{ steps.release-info.outputs.tag }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
