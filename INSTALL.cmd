@@ -17,7 +17,7 @@ echo.
 
 pause
 
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0\scripts\installer.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0\scripts\installer.ps1" %*
 
 ::THIS ONLY LOADS THE POWERSHELL SCRIPT TO INSTALL THE LANGUAGE PACK.
 ::THIS IS NOT THE INSTALLER ITSELF. CHECK "Scripts\installer.ps1" FOR THE INSTALLER CODE.
