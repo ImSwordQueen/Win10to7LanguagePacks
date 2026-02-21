@@ -52,8 +52,9 @@ jobs:
           $languageList = $languages -join ", "
           $languageMarkdown = $languages | ForEach-Object { "- $_" } | Out-String
           $languageListEscaped = $languageList -replace "`r`n", "" -replace "`n", ""
+          $languageMarkdownEscaped = $languageMarkdown -replace "`r`n", "%0A" -replace "`n", "%0A" -replace "\r", ""
           "list=$languageListEscaped" >> $env:GITHUB_OUTPUT
-          "markdown=$languageMarkdown" >> $env:GITHUB_OUTPUT
+          "markdown=$languageMarkdownEscaped" >> $env:GITHUB_OUTPUT
           Write-Host "Found languages: $languageList"
 
       - name: Get changelog
