@@ -50,9 +50,11 @@ jobs:
         run: |
           $languages = Get-ChildItem -Path "files" -Directory | Where-Object { $_.Name -ne "Template-TEMPLATE" } | ForEach-Object { $_.Name }
           $languageList = $languages -join ", "
+          $languageMarkdown = $languages | ForEach-Object { "- $_" }
+          $languageMarkdownString = $languageMarkdown -join "`n"
           Write-Host "Found languages: $languageList"
           "list=$languageList" >> $env:GITHUB_OUTPUT
-          $languages | ForEach-Object { Add-Content -Path $env:GITHUB_OUTPUT -Value "markdown=- $_" }
+          "markdown=$languageMarkdownString" >> $env:GITHUB_OUTPUT
 
       - name: Get changelog
         id: changelog
