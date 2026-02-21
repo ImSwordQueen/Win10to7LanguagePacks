@@ -149,4 +149,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: List created releases
-        run: ls -la releases/
+        shell: pwsh
+        run: Get-ChildItem -Path releases/ -Force
