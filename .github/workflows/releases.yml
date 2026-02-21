@@ -1,0 +1,157 @@
+name: Create Language Pack Releases
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to create release from'
+        required: true
+        default: '3.6.1+'
+
+permissions:
+  contents: write
+
+jobs:
+  create-releases:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+
+      - name: Extract version and get info
+        id: info
+        shell: pwsh
+        run: |
+          # Extract version from installer.ps1
+          $installerContent = Get-Content "scripts\installer.ps1" -Raw
+          if ($installerContent -match '\$PACKVERSION\s*=\s*"([^"]+)"') {
+            $version = $matches[1]
+          } else {
+            Write-Error "Could not find PACKVERSION in installer.ps1"
+            exit 1
+          }
+
+          $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
+          $commit = git rev-parse --short HEAD
+          "timestamp=$timestamp" >> $env:GITHUB_OUTPUT
+          "commit=$commit" >> $env:GITHUB_OUTPUT
+          "branch=${{ inputs.branch }}" >> $env:GITHUB_OUTPUT
+          "version=$version" >> $env:GITHUB_OUTPUT
+          Write-Host "Extracted version: $version"
+
+      - name: Create output directory
+        run: mkdir releases
+
+      - name: Get language list
+        id: languages
+        shell: bash
+        run: |
+          languages=$(find files -maxdepth 1 -type d ! -name "files" ! -name "Template-TEMPLATE" -printf "%f\n" | sort)
+          language_list=$(echo "$languages" | tr '\n' ',' | sed 's/,$//')
+          language_markdown=$(echo "$languages" | sed 's/^/- /')
+          echo "list=$language_list" >> $GITHUB_OUTPUT
+          {
+            echo 'markdown<<EOF'
+            echo "$language_markdown"
+            echo 'EOF'
+          } >> $GITHUB_OUTPUT
+          echo "Found languages: $language_list"
+
+      - name: Get changelog
+        id: changelog
+        shell: pwsh
+        run: |
+          # Get commits since last tag (if any)
+          $lastTag = git describe --tags --abbrev=0 2>$null
+          if ($lastTag) {
+            $newCommits = git log $lastTag..HEAD --format="| %h | %s |" --pretty=tformat:"| %h | %s |"
+          } else {
+            # If no tag exists, get all commits
+            $newCommits = git log --format="| %h | %s |" --pretty=tformat:"| %h | %s |"
+          }
+
+          # Format for output
+          $newCommitsEscaped = $newCommits -replace "`r`n", "%0A" -replace "`n", "%0A"
+          "new_commits=$newCommitsEscaped" >> $env:GITHUB_OUTPUT
+
+          Write-Host "Found commits since last tag"
+
+      - name: Create language pack ZIPs
+        shell: pwsh
+        run: |
+          $languages = Get-ChildItem -Path "files" -Directory | Where-Object { $_.Name -ne "Template-TEMPLATE" }
+
+          foreach ($lang in $languages) {
+            $langName = $lang.Name
+            Write-Host "Creating package for $langName..."
+
+            # Create temporary directory for this language
+            $tempDir = "releases\$langName"
+            mkdir -p $tempDir
+
+            # Copy bin folder (if exists)
+            if (Test-Path "bin") {
+              Copy-Item -Path "bin" -Destination "$tempDir\bin" -Recurse
+            }
+
+            # Copy scripts folder
+            if (Test-Path "scripts") {
+              Copy-Item -Path "scripts" -Destination "$tempDir\scripts" -Recurse
+            }
+
+            Copy-Item -Path "install.cmd" -Destination "$tempDir\"
+
+            # Copy the language folder from files
+            Copy-Item -Path "files\$langName" -Destination "$tempDir\files\$langName" -Recurse
+
+            # Create the ZIP file
+            $zipName = "10to7-$langName.zip"
+            Compress-Archive -Path "$tempDir\*" -DestinationPath "releases\$zipName" -Force
+
+            # Clean up temp directory
+            Remove-Item -Path $tempDir -Recurse -Force
+
+            Write-Host "Created $zipName"
+          }
+
+      - name: Generate release tag and title
+        id: release-info
+        shell: pwsh
+        run: |
+          $tag = "${{ steps.info.outputs.version }}-${{ inputs.branch }}-${{ steps.info.outputs.timestamp }}-${{ steps.info.outputs.commit }}"
+          $title = "Release ${{ steps.info.outputs.version }} - ${{ inputs.branch }} - ${{ steps.info.outputs.timestamp }} - Commit ${{ steps.info.outputs.commit }}"
+          "tag=$tag" >> $env:GITHUB_OUTPUT
+          "title=$title" >> $env:GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.release-info.outputs.tag }}
+          name: ${{ steps.release-info.outputs.title }}
+          body: |
+            ## Windows 10to7 Language Packs Release
+
+            ### Release Information
+            - **Version:** ${{ steps.info.outputs.version }}
+            - **Branch:** ${{ inputs.branch }}
+            - **Timestamp:** ${{ steps.info.outputs.timestamp }}
+            - **Commit:** ${{ steps.info.outputs.commit }}
+
+            ### New Commits Since Last Release
+            | SHA | Message |
+            |-----|---------|
+            ${{ steps.changelog.outputs.new_commits }}
+
+            ### Available Languages
+            ${{ steps.languages.outputs.markdown }}
+
+          files: releases/*.zip
+          fail_on_unmatched_files: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: List created releases
+        shell: pwsh
+        run: Get-ChildItem -Path releases/ -Force
